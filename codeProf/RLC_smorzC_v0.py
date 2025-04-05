@@ -213,7 +213,6 @@ plt.savefig(file+'_2'+'.png',
             orientation ='Portrait',
             dpi = 100)
 
-plt.show()
 
 
 # Extract and print best fit (BF) parameters and errors
@@ -247,6 +246,7 @@ Vout = Vout[tempo>t0_BF+shift]-v0_BF+0.0035 #Vout
 eVout = eVout[tempo>t0_BF+shift]
 tempo = tempo[tempo>t0_BF+shift]-t0_BF
 N = len(tempo)
+print(tempo[:10])
 
 
 # Nuova regressione utilizzando fitf2 quindi sono nei parametri A,B e C, sempre con i minimi quadrati
