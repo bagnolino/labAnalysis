@@ -113,8 +113,8 @@ def profi1D(axis, mappa):
 ## PARAMATERS
 
 # Input file name
-file = 'datiRLC'
-inputname = 'codeProf/datiRLC.txt'
+file = 'codeProf/datiRLC'
+inputname = file+'.txt'
 
 
 # Initial parameter values
@@ -247,9 +247,7 @@ Vout = Vout[tempo>t0_BF+shift]-v0_BF+0.0035 #Vout
 eVout = eVout[tempo>t0_BF+shift]
 tempo = tempo[tempo>t0_BF+shift]-t0_BF
 N = len(tempo)
-print(t0_BF)
-for x, y in tuple(zip(tempo[:40],Vout[:40])):
-    print(x,y)
+
 
 # Nuova regressione utilizzando fitf2 quindi sono nei parametri A,B e C, sempre con i minimi quadrati
 popt, pcov = curve_fit(fitf2, tempo, Vout, p0=[Ainit, Binit, Cinit], method='lm', sigma=eVout, absolute_sigma=True)
