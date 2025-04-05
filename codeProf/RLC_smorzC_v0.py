@@ -65,7 +65,7 @@ def fitf(t, A, B, C, v0, t0):
 def fitf2(t, A, B, C):
     x = t
     Omega = np.sqrt(B**2-1/C**2)  # 
-    fitval = A/Omega*np.exp(-x/C)*(1/C*np.sin(Omega*x)-Omega*np.cos(Omega*x))
+    fitval = A*np.exp(-x/C)*(1/C*1/Omega*np.sin(Omega*x)-np.cos(Omega*x))
     return fitval
 
 # Funzione per calcolare il chi2 sugli inidici i,j,k dei vettori rispettivamente A_chi, B_chi, C_chi
@@ -114,12 +114,12 @@ def profi1D(axis, mappa):
 
 # Input file name
 file = 'datiRLC'
-inputname = file+'.txt'
+inputname = 'codeProf/datiRLC.txt'
 
 
 # Initial parameter values
 Ainit= 8e0 # voltaggio (V)
-Binit = 3000000.  # frequenza angolare (Hz)
+Binit = 600000.  # frequenza angolare (Hz)
 Cinit = 2.5e-5 # tempo caratteristico di decadimento tau (s)
 v0init = -0.018 # voltaggio di 0 dell'oscillazione (V)
 t0init = 0e-6 # shift temporale dell'inizio dell'oscillazione (s)
@@ -247,6 +247,9 @@ Vout = Vout[tempo>t0_BF+shift]-v0_BF+0.0035 #Vout
 eVout = eVout[tempo>t0_BF+shift]
 tempo = tempo[tempo>t0_BF+shift]-t0_BF
 N = len(tempo)
+print(t0_BF)
+for x, y in tuple(zip(tempo[:40],Vout[:40])):
+    print(x,y)
 
 # Nuova regressione utilizzando fitf2 quindi sono nei parametri A,B e C, sempre con i minimi quadrati
 popt, pcov = curve_fit(fitf2, tempo, Vout, p0=[Ainit, Binit, Cinit], method='lm', sigma=eVout, absolute_sigma=True)
@@ -295,6 +298,7 @@ print(r'B = ({c:.5e} +/- {d:.1e}) kHz'.format(c=B_BF * 1e-3, d=eB_BF * 1e-3))
 print(r'C = ({e:.3e} +/- {f:.1e}) ms'.format(e=C_BF * 1e3, f=eC_BF * 1e3))
 print(r'chisq = {m:.2f}'.format(m=chisq))
 print("=======================================================")
+
 
 """
 Ora che abbiamo effettuato la regressione ai minimi quadrati utilizzando una libreria di Python (Scipy), 
