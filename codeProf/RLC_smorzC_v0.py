@@ -81,7 +81,7 @@ def fitchi2(i,j,k):
 
 # Funzione per effettuare la profilazione su due assi di una matrice 3D escludendo il terzo (1,2 o 3).
 # la funzione per ogni indice della matrice 2D inserisce il minimo del valore sul terzo asse.
-def profi2D(axis,matrix3D):
+def profi2D(axis,mappa):
     if axis == 1 :
         mappa2D = np.array([[np.min(mappa[:,b,c]) for b in range(step)] for c in range(step)])
     if axis == 2 :
@@ -118,7 +118,7 @@ inputname = file+'.txt'
 
 
 # Initial parameter values
-Ainit= 8e0 # voltaggio (V)
+Ainit= 2e0 # voltaggio (V)
 Binit = 600000.  # frequenza angolare (Hz)
 Cinit = 2.5e-5 # tempo caratteristico di decadimento tau (s)
 v0init = -0.018 # voltaggio di 0 dell'oscillazione (V)
@@ -434,7 +434,7 @@ print(r'chisq = {m:.2f}'.format(m=np.min(mappa)))
 print("=======================================================")
 
 
-"""
+""" 
 Adesso faccio il grafico delle profilazioni 2D e 1D dei diversi parametri
 """
 
