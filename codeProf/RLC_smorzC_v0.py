@@ -6,7 +6,7 @@ import mplhep as hep
 from cycler import cycler
 import matplotlib.colors as colors
 import multiprocessing.pool
-
+import latex
 
 # settaggio globale grafici    
 #print(plt.style.available)
@@ -25,7 +25,7 @@ params = {'legend.fontsize': '10',
          'xtick.labelsize':'10',
          'ytick.labelsize':'10',
          'lines.linewidth': '1',
-#         'text.usetex': True,
+         'text.usetex': True,
 #         'axes.formatter.limits': '-5, -3',
          'axes.formatter.min_exponent': '2',
 #         'axes.prop_cycle': cycler('color', 'bgrcmyk')
@@ -126,7 +126,7 @@ t0init = 0e-6 # shift temporale dell'inizio dell'oscillazione (s)
 
 
 # Assumed reading errors
-letturaV = 0.2*0.41  # errore di lettura dell'oscilloscopio nel voltaggio 1/10 div * distr.triangolare
+letturaV = 0.02*0.41  # errore di lettura dell'oscilloscopio nel voltaggio 1/10 div * distr.triangolare
 errscalaV = 0.03*0.41 #  errore percentuale dell'oscilloscopio nel voltaggio 3% * distr.triangolare
 letturaT = 0.5e-6*0.41  # errore di lettura dell'oscilloscopio nel tempo 1/10 div * distr.triangolare
 
